@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class ClientController {
     @Autowired
@@ -26,10 +28,11 @@ public class ClientController {
         return new ResponseEntity<>(client,HttpStatus.OK);
     }
 
-    @GetMapping(value = "/createClient")
-    public ResponseEntity createClient (@RequestBody Client client){
-        Client clientCreated = service.createClient(client);
-        return new ResponseEntity<>(clientCreated, HttpStatus.OK);
+
+    @PostMapping(value = "/createClient")
+    public ResponseEntity createClient (@Valid @RequestBody Client client){
+        client  = service.createClient(client);
+        return new ResponseEntity<>(client, HttpStatus.OK);
     }
 
     @GetMapping(value = "/findById")
