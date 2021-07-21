@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -28,7 +29,6 @@ public class ClientController {
         return new ResponseEntity<>(client,HttpStatus.OK);
     }
 
-
     @PostMapping(value = "/createClient")
     public ResponseEntity createClient (@Valid @RequestBody Client client){
         client  = service.createClient(client);
@@ -45,6 +45,13 @@ public class ClientController {
     public ResponseEntity deleteById(@RequestParam (value = "id") Long id){
         boolean deleted = service.deleteById(id);
         return new ResponseEntity<>( deleted,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/plantilla")
+    public ModelAndView plantilla(Long id){
+       ModelAndView plantilla = new ModelAndView("presentacion");
+       plantilla.addObject("nameUser", "Nacho");
+       return plantilla;
     }
 
 

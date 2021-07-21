@@ -22,8 +22,8 @@ public class ClientService implements IClienteService {
 
     @Override
     public Client createClient(Client client) {
-        Client clientCreated = repository.save(client);
-        return clientCreated;
+        client = repository.save(client);
+        return client;
     }
 
     @Override
