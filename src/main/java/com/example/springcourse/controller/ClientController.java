@@ -32,11 +32,11 @@ public class ClientController {
     @PostMapping(value = "/createClient")
     public ResponseEntity createClient (@Valid @RequestBody Client client){
         client  = service.createClient(client);
-        return new ResponseEntity<>(client, HttpStatus.OK);
+        return new ResponseEntity<>(client, HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/findById")
-    public ResponseEntity findById(Long id){
+    @GetMapping(value = "/findById/{id}")
+    public ResponseEntity findById(@PathVariable( value = "id") Long id){
         Client clientFound = service.searchByID(id);
         return new ResponseEntity<>(clientFound, HttpStatus.OK);
     }

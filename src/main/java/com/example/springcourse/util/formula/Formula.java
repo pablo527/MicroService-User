@@ -1,11 +1,17 @@
 package com.example.springcourse.util.formula;
 
 import com.example.springcourse.models.DataSimulation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
+
 import static com.example.springcourse.Constants.MULTI_RATE_FACTOR;
 import static com.example.springcourse.Constants.VALUE_IVA;
 
 public class Formula {
+   private static Logger logger = LoggerFactory.getLogger(Formula.class);
+
     public static ArrayList<Month> generateSimulation(DataSimulation data){
         double annualRateWithIva = data.getAnnualRate()  + MULTI_RATE_FACTOR;
         double monthlyRateWithoutIva = data.getAnnualRate()/12;
@@ -35,6 +41,9 @@ public class Formula {
                balance = auxMonth.getBalance() - capital;
            }
            Month month = new Month(balance,monthlyFee,capital,interest,iva);
+
+            logger.info("Month: " + i);
+
            months.add(month);
         }
         return months;
@@ -45,7 +54,7 @@ public class Formula {
         double ax1 = (Math.pow(1+interest,term)) * interest;
         double aux2 = (Math.pow(1+interest,term)) - 1;
 
-        monthlyPayment = creditValue + (ax1/aux2);
+        monthlyPayment = creditValue * (ax1/aux2);
 
         return  monthlyPayment;
     }

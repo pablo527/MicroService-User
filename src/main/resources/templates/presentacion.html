@@ -4,7 +4,23 @@
     </header>
 
     <body>
-            <p th:text="'Plantilla De: ' + ${nameUser}"></p>
+            <table border="1">
+                <tr>
+                    <th>Balance</th>
+                    <th>Monthly payment</th>
+                    <th>Capital</th>
+                    <th>Interest</th>
+                    <th>Iva</th>
+                </tr>
+                <tr th:each="month: ${tableSimulation}">
+                    <td th:utext="${month.balance}"></td>
+                    <td th:utext="${month.monthlyFee}"></td>
+                    <td th:utext="${month.capital}"></td>
+                    <td th:utext="${month.interest}"></td>
+                    <td th:utext="${month.iva}"></td>
+
+                </tr>
+            </table>
 
     </body>
 </html5>

@@ -13,7 +13,7 @@ public class Constants {
     public static final String COLUMN_ANNUAL_RATE= "AnnualRate";
 
     public static final long MINIMUM_TERM = 12;
-    public static final double MINIMUM_CREDIT_VALUE= 50000000;
+    public static final double MINIMUM_CREDIT_VALUE= 250000;
     public static final double MULTI_RATE_FACTOR= 1.16;
     public static final double VALUE_IVA = 0.19;
 
